@@ -1,0 +1,96 @@
+@charset "UTF-8";
+@tabbar-height:  98px;
+@z-index-tabbar: 1000;
+@ns: '';
+@fa-var-angle-right:20px;
+.tabbar {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: @tabbar-height;
+    line-height: @tabbar-height;
+    z-index: @z-index-tabbar;
+
+    ul {
+        padding-left: 0;
+        margin: 0;
+        list-style: none;
+        width: 100%;
+        background: #FFF;
+        border-top: 1px solid #ccc;
+    }
+
+    .tabbar-nav {
+        //padding-left: 8px;
+        //padding-right: 8px;
+        text-align: center;
+        overflow: hidden;
+        // display: flex;
+        li {
+            // flex: 1;
+            display: table-cell;
+            width: 1%;
+            float: none;
+        }
+    }
+}
+
+.tabbar-nav {
+    position: relative;
+    z-index: @z-index-tabbar + 5;
+
+    a {
+        display: inline-block;
+        width: 100%;
+        height: @tabbar-height;
+        text-decoration: none;
+        color:#666;
+        line-height: 100%;
+        img {
+            display: block;
+            vertical-align: middle;
+            height: 24px;
+            width: 24px;
+            margin: 4px auto 0
+        }
+
+        [class*="@{ns}icon"] {
+            width: 60px;
+            height: 60px;
+            margin: 4px auto;
+            display: block;
+            line-height: 60px;
+            font-size: 48px;
+
+            &:before {
+                font-size: 48px;
+                vertical-align: middle;
+            }
+        }
+
+        .tabbar-label {
+            line-height: 1;
+            font-family: PingFangSC-Regular;
+            color: #333;
+            letter-spacing: 0;
+            font-size: 18px;
+            line-height: 18px;
+        }
+    }
+    .active {
+        a{
+            color: #333;
+        }
+        .tabbar-label {
+            color: #333;
+        }
+
+    }
+}
+
+
+// 给body 增加的className
+.with-fixed-tabbar {
+    padding-bottom: @tabbar-height + 5;
+}

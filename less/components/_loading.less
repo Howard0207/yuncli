@@ -1,0 +1,44 @@
+.loading-container{
+  position: fixed;
+  top:0;
+  left: 0;
+  right: 0;
+  bottom:0;
+  background: transparent;
+  z-index: 999999999;
+  .loading-con{
+    position: absolute;
+    left: 0;
+    top:0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 218px;
+    height:184px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    text-align: center;
+    // line-height: 200px;
+    .loading{
+      max-height: 184px;
+      i {
+        font-size: 70px;
+        color:#fff;
+      }
+      img{
+        width: 50px;
+        height: 50px;
+        margin: 36px auto 20px;
+        animation: loading 1s linear infinite;
+      }
+      p{
+        color: #fff;
+        font-size: 34px;
+      }
+    }
+  }
+  @-webkit-keyframes loading {
+    0%{transform: rotate(0deg)}
+    100%{transform: rotate(360deg)}
+  }
+}

@@ -1,0 +1,148 @@
+.nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9;
+  width: 100vw;
+  height: 94px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  line-height: 94px;
+  // border-bottom: 1px solid #E5E5E6;
+  box-sizing: border-box;
+  &::after{
+    content: "";
+    display:block;
+    width: 100%;
+    height: 1px;
+    background: #e5e5e5;
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+.noborder{
+  &::after{
+    height: 0;
+  }
+}
+.navTitle{
+  color: #000;
+  line-height: 94px;
+  font-size: 38px;
+  font-weight: Semibold;
+  width: 50%;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+    span{
+      font-weight: bold;
+      white-space: nowrap;
+    }
+}
+.navItem{
+  width: 25%;
+  padding: 0px 30px;
+  min-width: 50px;
+  line-height: 94px;
+  &.right{
+    text-align: right;
+  }
+  &.left{
+    .iconbox{
+      i:first-child{
+        margin-right: 35px;
+      }
+    }
+  }
+}
+
+.iconText{
+  font-size: 30px;
+}
+.navIcon{
+  // padding: 0 30px;
+  line-height: 94px;
+}
+.navMiniProgram{
+  height: 128px;
+  padding-top:34px;
+  background: #333138;
+  align-items: center;
+  color: #FFFFFF!important;
+  .navTitle{
+    color: #FFFFFF;
+    line-height: 94px;
+  }
+  .navIcon{
+    color: #FFFFFF!important;
+  }
+  &:after{
+    display:none;
+  }
+
+}
+.navMiniProgram.iphoneAgent{
+  height: 128px;
+  .navTitle{
+    line-height: 94px;
+  }
+}
+.navMiniProgram.androidAgent{
+  height: 148px;
+  padding-top:54px;
+  .navTitle{
+    line-height: 94px;
+  }
+}
+.navMiniProgram.iphoneXAgent{
+  height: 178px;
+  padding-top:84px;
+  // .navTitle{
+  //   line-height: 94px;
+  // }
+  // .navItem{
+  //   line-height: 94px;
+  // }
+}
+
+// 小程序底栏
+.miniProgramNav{
+    position: absolute;
+    z-index: 110;
+    height: 100px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #e5e5e5;
+
+    .commentBoxInputWrap {
+      flex: 7;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      height: 100%;
+    }
+    .buttonBooking {
+      width: 540px;
+      height: 70px;
+      margin: 0 20px;
+      flex: 7;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+    }
+    .commentBoxButtonWrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 20px;
+      height: 100%;
+    }
+}

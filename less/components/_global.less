@@ -1,0 +1,237 @@
+@charset "utf-8";
+@import "_config.less";
+html,
+body,
+div,
+span,
+table,
+tbody,
+tr,
+th,
+td,
+em,
+img,
+strong,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+dl,
+dd,
+dt,
+ol,
+ul,
+li,
+form,
+label,
+input,
+textarea,
+button,
+b,
+i,
+u,
+sup {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+b {
+  font-weight: 400;
+}
+
+a,
+img {
+  text-decoration: none;
+  border: 0;
+}
+
+body {
+  font-family: @global-font-family;
+  color: @global-body-color;
+  background: @global-background-color;
+  font-size: @global-font-size;
+  overflow: hidden;
+}
+
+a {
+  color: @global-link-link;
+  font-size: @global-font-size;
+  &:link {
+    text-decoration: none;
+  }
+  &:visited {
+    text-decoration: none;
+    color: @global-link-visited;
+  }
+  &:hover {
+    text-decoration: none;
+    color: @global-link-hover;
+  }
+  &:active {
+    text-decoration: none;
+    color: @global-link-active;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+.f-left {
+  float: left;
+}
+
+.f-right {
+  float: right
+}
+
+.clear {
+  clear: both;
+}
+
+.clearfix {
+  &:after {
+    .clear();
+  }
+}
+
+//*************************input输入框placeholder提示颜色*****************/
+//input placeholder默认颜色，ie10或以上
+// WebKit browsers
+::-webkit-input-placeholder {
+  color: @global-placeholder;
+}
+
+// Mozilla Firefox 4 to 18 */
+:-moz-placeholder {
+  color: @global-placeholder;
+  opacity: 1;
+}
+
+// Mozilla Firefox 19+
+::-moz-placeholder {
+  color: @global-placeholder;
+  opacity: 1;
+}
+
+// Internet Explorer 10+
+:-ms-input-placeholder {
+  color: @global-placeholder  !important;
+}
+
+//去掉ie文本框的叉叉和密码输入框的眼睛图标（兼容模式不管用）
+::-ms-clear,
+::-ms-reveal {
+  display: none;
+}
+
+/**
+ * 重置标签元素
+ * 1. Remove the gray background on active links in IE 10.
+ * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.
+ * 3. 当在iOS上触摸并按住一个元素的时候，Safari会展示一个关于这个链接的callout信息。禁用该属性。
+ */
+ a{
+  text-decoration:none;
+  background-color:transparent;/* 1 */
+  -webkit-text-decoration-skip: objects;/* 2 */
+  -webkit-touch-callout:none;/* 3 */
+}
+
+//********************内容主容器*********************************/
+
+// 不同设备像素比设备 1px 边框 - 下边框
+.borderBottomHairline {
+  &::after {
+      content: ' ';
+      display: block;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      border-top: 1px solid #E5E5E5;
+  }
+}
+
+// 不同设备像素比设备 1px 边框 - 上边框
+.borderTopHairline {
+  &::before {
+      content: ' ';
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      border-top: 1px solid #E5E5E5;
+  }
+}
+
+// 不同设备像素比设备 1px 边框 - 左边框
+.borderLeftHairline {
+  &::before {
+      content: ' ';
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      border-left: 1px solid #E5E5E5;
+  }
+}
+
+// 不同设备像素比设备 1px 边框 - 右边框
+.borderRightHairline {
+  &::before {
+      content: ' ';
+      display: block;
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      border-right: 1px solid #E5E5E5;
+  }
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.5),
+(min-device-pixel-ratio: 1.5) {
+  .borderTopHairline::before,
+  .borderRightHairline::before
+  .borderBottomHairline::before
+  .borderLeftHairline::before {
+      transform: scaleY(0.7);
+  }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-device-pixel-ratio: 2) {
+  .borderTopHairline::before,
+  .borderRightHairline::before
+  .borderBottomHairline::before
+  .borderLeftHairline::before {
+      transform: scaleY(0.5);
+  }
+}
+
+.hide, .hidden {
+  display: none;
+}
+
+.invisible {
+  visibility: hidden;
+}

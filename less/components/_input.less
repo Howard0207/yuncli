@@ -1,0 +1,66 @@
+@charset "utf-8";
+@import "_config.less";
+
+.input-control{ 
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0px; 
+  position: relative;
+  width:100%;
+  .placeholder{ 
+    left: 10px; 
+    top: 0; 
+    display: inline-block; 
+    position: absolute; 
+    line-height: @global-input-height; 
+    color: @global-placeholder }
+  .showClose{
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 24px;
+    margin-top: -18px;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    border: 1px solid #bc2141;
+    border-radius: 32px;
+    font-size: 24px;
+    color: #bc2141;
+    background: #fae4e9;
+  }
+  ::-ms-clear,::-ms-reveal{display:none;}
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+  input[type="number"]{
+    -moz-appearance: textfield;
+  }
+
+}
+.input{ 
+  background-color: @global-input-bg; 
+  border: 1px solid #fff;
+  border-bottom: 1px solid @global-input-border; 
+  border-radius: 0px;
+  height: @global-input-height; 
+  line-height: @global-input-height; 
+  // line-height: (@global-input-height) \9;
+  padding: 0 54px 0 24px; 
+  width: 100%;
+  box-sizing: border-box; 
+  overflow: hidden; 
+  color: @global-input-color; 
+  font-size: @global-input-fz; 
+  font-family: @global-font-family; 
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out 0s; //input输入类
+  //禁止输入类
+  &.disabled{ background-color: @global-input-disabled-bg }
+  //输入错误
+  &.error{ border-color: @global-input-error-border; color: @global-input-error-color; }
+  //获取焦点
+  &.focus, &:focus{ border-color: @global-input-focus-border; color: @global-input-focus-color; box-shadow: 0px 0px 10px @global-input-focus-border inset; }
+}
+div.input{ line-height: @global-input-height }

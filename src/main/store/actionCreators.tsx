@@ -1,16 +1,16 @@
 import * as constants from './constants'
 
-export const getDetail = (id) => {
+export const changeDetail = () => {
     return (dispatch) => {
         const result = {
             title: 'a',
             content: 'b'
         }
-        dispatch(changeDetail(result))
+        dispatch(changeDetails(result))
     }
 }
 
-const changeDetail = result => ({
+const changeDetails = result => ({
     type: constants.CHANGE_DETAIL,
     title: result.title,
     content: result.content

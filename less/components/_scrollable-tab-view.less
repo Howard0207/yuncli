@@ -1,0 +1,267 @@
+@charset "utf-8";
+.scrollableTabView {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    .buttonSearch {
+        padding-left: 30px;
+        padding-right: 10px;
+        display: flex;
+        align-items: center;
+    }
+}
+.tabViewMenu{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    z-index:1;
+    background-color: #fff;
+}
+.tabViewMenuWithShadow{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow:0px 8px 12px rgba(0,0,0,0.07);
+    position: relative;
+    z-index:1;
+}
+.tabViewMenuMain{
+    white-space: nowrap;
+    word-break: break-all;
+    overflow-y: scroll;
+    padding: 14px 90px 14px 10px;
+    width: max-content;
+    position: relative;
+    min-height: 50px;
+}
+.shadow{
+    // content: '';
+    display: block;
+    position: absolute;
+    right: 7%;
+    top: 0;
+    width: 70px;
+    height: 80px;
+    background: linear-gradient(to right, rgba(255,255,255,0.2), rgba(255,255,255,1));
+}
+.tabViewMenuInner{
+    display: inline-block;
+    &::after{
+        clear: both;
+    }
+}
+
+.menuViewScroll{
+    width: 100%;
+    padding: 14px 0;
+    .tabViewMenuInner{
+        // display: flex;
+        // flex-direction: row;
+        // justify-content: space-between;
+    }
+    &::after{
+        display: none;
+    }
+}
+
+.tabViewTitle{
+   padding:5px 20px;
+//    margin: 0 25px;
+   display:inline-block;
+}
+.tabViewTitleText{
+   color: #666;
+   font-size: 30px;
+   height: 58px;
+}
+.tabViewActive{
+    // height: 58px;
+    font-size: 30px;
+    position: relative;
+    // overflow: hidden;
+    // border-bottom: 2px #FB5B3B solid;
+    &::after{
+        content: '';
+        display: inline-block;
+        position: absolute;
+        left: 50%;
+        bottom: -12px;
+        margin-left: -25px;
+        width: 50px;
+        height: 4px;
+        border-radius: 2px;
+        background: #FB5B3B;
+        // animation: mymove 1s infinite;
+        // animation-iteration-count: 1;
+    }
+}
+
+.tabViewActiveRight::after{
+    content: '';
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: #FB5B3B;
+    animation: mymoveback 1s infinite;
+    animation-iteration-count: 1;
+}
+@keyframes mymove
+    {
+        from {left:100%;}
+        to {left:0;}
+    }
+
+@-webkit-keyframes mymove /*Safari and Chrome*/
+    {
+        from {left:100%;}
+        to {left:0;}
+    }
+@keyframes mymoveback
+    {
+        from {left:-100%;}
+        to {left:0;}
+    }
+
+@-webkit-keyframes mymoveback /*Safari and Chrome*/
+    {
+        from {left:-100%;}
+        to {left:0;}
+    }
+.tabViewActiveText{
+    color:#333;
+    font-weight: bold;
+    height: 58px;
+}
+
+.tabViewWrap{
+    width: 100%;
+    // overflow: hidden;
+    position: relative;
+}
+.tabViewItem{
+    display: none;
+}
+
+.tabViewItem>div{
+    width: 100%;
+}
+
+.tabViewItemActive{
+    width: 100%;
+    // height: 300px;
+    display: flex;
+}
+
+.menuMarkLeft{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 70px;
+    height: 80px;
+    background: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0.2));
+    z-index: 2;
+}
+.tabViewMenuSide {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 19;
+    padding-left: 10px;
+    width: 100px;
+    height: 79px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    mask-image: linear-gradient(
+        to left,
+        rgba(255,255,255,1) 80%,
+        rgba(255,255,255,.75) 85%,
+        rgba(255,255,255,.5) 90%,
+        rgba(255,255,255,.25) 95%,
+        transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+        to left,
+        rgba(255,255,255,1) 80%,
+        rgba(255,255,255,.75) 85%,
+        rgba(255,255,255,.5) 90%,
+        rgba(255,255,255,.25) 95%,
+        transparent 100%
+    );
+}
+.tabViewMenuSideIcon{
+    display: inline-block;
+    transform: rotate(-90deg);
+    transition: transform .3s ease-in-out;
+}
+.tabViewMenuSideIconUp {
+    .tabViewMenuSideIcon;
+    transform: rotate(90deg)
+}
+
+.tabViewMark{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 13;
+    &Backdrop {
+        content: " ";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 14;
+        background-color: rgba(0,0,0,.4);
+    }
+    .tabViewMarkContainer{
+        position: relative;
+        z-index: 15;
+        background: #fff;
+        padding: 20px 30px 30px;
+        .markTitle{
+            font-size: 30px;
+            color:#333;
+            font-weight: bold;
+        }
+        .markUl{
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            .markli{
+                margin-bottom: 30px;
+                margin-right: calc((100% - 150px * 4) / 3);
+                width: 150px;
+                line-height: 60px;
+                text-align: center;
+                border-radius: 6px;
+                background-color: #fff;
+                font-size: 26px;
+                color: #333;
+                border: 1px solid #e5e5e5;
+                box-sizing: border-box;
+                &:nth-child(4n) {
+                    margin-right: 0;
+                }
+            }
+            .markActive{
+                color: #FB5B3B;
+                border-color:#FB5B3B;
+            }
+        }
+    }
+}
+.tabMiniProgram{
+    top: 0;
+}

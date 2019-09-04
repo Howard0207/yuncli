@@ -1,0 +1,85 @@
+.switch {
+  width: 1.6rem;
+  height: 0.8rem;
+  display: inline-block;
+  background: #ccc;
+  box-sizing: border-box;
+  position: relative;
+  cursor: pointer;
+  border-radius: 1rem;
+  vertical-align: middle;
+  border: 1px solid #ccc;
+}
+.switch-inner {
+  width: 98%;
+  height: 98%;
+  position: absolute;
+  border-radius: 1rem;
+  background: #ffffff;
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 0;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  display: inline-block;
+}
+.switch-inner:before, .switch-inner:after {
+  content: " ";
+  position: absolute;
+  left: 0rem;
+  top: 0rem;
+  height: 100%;
+  border-radius: 1rem;
+  background: #fff;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+.switch-inner:before {
+  width: 94%;
+  box-sizing: border-box;
+  z-index: 1;
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+.switch-inner:after {
+  width: 50%;
+  z-index: 2;
+  -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
+  transform: translateX(0);
+  box-shadow: 0.04rem 0.04rem 0.08rem rgba(0, 0, 0, 0.21);
+}
+.am-switch-checkbox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  border: 0 none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.switch.switch-on .switch-inner {
+  background: #4dd865;
+}
+.switch.switch-disabled .switch-inner {
+  opacity: .3;
+}
+.switch.switch-on .switch-inner:after {
+  -webkit-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  transform: translateX(100%);
+}
+.switch.switch-on .switch-inner:before {
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+}

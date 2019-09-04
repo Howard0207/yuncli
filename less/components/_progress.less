@@ -1,0 +1,62 @@
+.ring-wrap{
+  position: relative;
+  border-radius: 50%;
+  .ring-circle,.ring-percent{
+    position: absolute;
+    border-radius: 50%;
+    box-sizing: border-box;
+  }
+  .ring-circle.clip-auto{
+    clip:rect(auto, auto, auto, auto);
+  }
+  .ring-percent{
+    .left{
+      transition:transform ease;
+    }
+    .right{
+      .wth0{
+        width:0;
+      }
+    }
+  }
+  .ring-info{
+    position: absolute;
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #fff;
+    z-index: 1;
+    .num-info i{
+      font-style: normal;
+    }
+  }
+}
+
+.line-wrap{
+  position: relative;
+  padding: 30px;
+  .line-bg{
+    height: 8px !important;
+    position: relative;
+    .line-inner{
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 8px !important;
+    }
+    .line-info{
+      top: -32px !important;
+      position: absolute;
+      .num-info i{
+        font-style: normal;
+      }
+    }
+    .line-doc{
+      width: 18px !important;;
+      height: 18px !important;
+      border-radius: 20px !important;
+      position: absolute;
+      top: -5px !important;
+    }
+  }
+}

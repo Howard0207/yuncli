@@ -1,0 +1,24 @@
+
+.number-box{
+  display: flex;
+  border: 1px solid #E5E5E5;
+  .icon-reduce{
+    width: 48px;
+    line-height: 48px;
+    text-align: center;
+    background-color: #fff;
+    color: #333;
+    &.disabled{
+      color: #999;
+      cursor: not-allowed;
+    }
+  }
+  input {
+    border: 0;
+  }
+  input::-webkit-inner-spin-button,
+  input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}

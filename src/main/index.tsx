@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { actionCreators } from './store'
-
+import Button from '_components/button'
 class Main extends Component<any>{
     render() {
         const { handleClick, content} = this.props
@@ -9,6 +9,7 @@ class Main extends Component<any>{
             <div>
                 <a onClick={handleClick} className="button">点击</a>
                 <p>{content}</p>
+                <Button />
             </div>
         )
     }

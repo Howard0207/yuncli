@@ -4,12 +4,21 @@
             "@babel/preset-env",
             {
                 "targets": {
+                    "ie": "9",
                     "esmodules": true
                 }
             }
-        ], 
-        "@babel/preset-typescript", "@babel/preset-react"],
+        ],
+        "@babel/preset-typescript",
+        "@babel/preset-react"
+    ],
     "plugins": [
+        [
+            "@babel/plugin-proposal-decorators",
+            {
+                "legacy": true
+            }
+        ],
         [
             "@babel/plugin-transform-runtime",
             {

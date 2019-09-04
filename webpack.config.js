@@ -3,10 +3,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
+const webpack = require('webpack')
 module.exports = env => {
     const devMode = env.production === true
     return {
-        entry: path.resolve(__dirname, 'index'),
+        entry: path.resolve(__dirname, 'index.tsx'),
         output: {
             path: path.resolve(__dirname, 'dist'),
             filename: "js/index.js"
@@ -15,28 +16,24 @@ module.exports = env => {
             // Add `.ts` and `.tsx` as a resolvable extension.
             extensions: [".tsx", ".ts", ".js", ".jsx"],
             alias: {
-                "_src": path.resolve(__dirname, 'src'),
+                _components: path.resolve(__dirname, 'components'),
             }
         },
         optimization: {
             minimizer: [
-                new TerserJSPlugin({}),
-                new OptimizeCSSAssetsPlugin({
-                    assetNameRegExp: /\.optimize\.css$/g,
-                    cssProcessor: require('cssnano'),
-                    cssProcessorPluginOptions: {
-                        preset: ['default', { discardComments: { removeAll: true } }],
-                    },
-                    canPrint: true
-                })
+                new TerserJSPlugin({
+                    cache: true,
+                    parallel: true
+                }),
+                new OptimizeCSSAssetsPlugin()
             ],
             splitChunks: {
-                chunks: "initial",
-                minSize: 30000,
-                maxAsyncRequests: 5,
-                maxInitialRequests: 3,
-                name: false,
                 cacheGroups: {
+                    default: {
+                        minChunks: 2,
+                        priority: -20,
+                        reuseExistingChunk: true
+                    },
                     vendor: {
                         chunks: 'initial',
                         test: /[\\/]node_modules[\\/]/,
@@ -44,15 +41,10 @@ module.exports = env => {
                         minSize: 0,
                         minChunks: 1,
                     },
-                    default: {
-                        minChunks: 2,
-                        priority: -20,
-                        reuseExistingChunk: true
-                    },
                     styles: {
                         name: 'styles',
                         test: /\.css$/,
-                        chunks: 'all',
+                        chunks: 'initial',
                         enforce: true,
                     },
                 }
@@ -60,6 +52,12 @@ module.exports = env => {
         },
         module: {
             rules: [
+                {
+                    test: /\.js$/,
+                    use: 'HappyPack/loader?id=js',
+                    include: path.resolve(__dirname, "../src"),
+                    // exclude: /node_modules/
+                },
                 {
                     test: /\.tsx?$/,
                     use: ['babel-loader', 'ts-loader'],
@@ -86,20 +84,62 @@ module.exports = env => {
                         },
                         'less-loader',
                     ]
-                }
+                },
+                {
+                    test: /\.(png|jpg|gif)$/,
+                    use: {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 10 * 1024,
+                            name: '/[name].[hash:7].[ext]',
+                            outputPath: './img',
+                        }
+                    }
+                },
+                {
+                    test: /\.(woff|woff2|eot|ttf|otf)$/,
+                    use: [
+                        'file-loader'
+                    ]
+                },
             ]
         },
 
         plugins: [
+            new HappyPack({
+                id: 'js',
+                use: [{
+                    loader: "babel-loader",
+                    options: {
+                        presets: [["@babel/preset-env", { "targets": {"ie": "9","esmodules": true }, "useBuiltIns": "usage","corejs": 3 }], "@babel/preset-react"],
+                        plugins: [
+                            ["@babel/plugin-proposal-decorators", { "legacy": true }],
+                            "@babel/plugin-transform-runtime",
+                            "@babel/plugin-syntax-dynamic-import"
+                        ]
+                    }
+                }]
+            }),
             new HtmlWebpackPlugin({
                 template: path.resolve(__dirname, 'src/index.html'),
+                favicon: path.resolve(__dirname, 'favicon.ico'),
                 filename: 'index.html',
-                inject: 'body'
+                inject: 'body',
+                minify: true,
             }),
             new MiniCssExtractPlugin({
-                filename: '[name].[chunkhash:8].css',
+                filename: './css/[name].[chunkhash:8].css',
                 chunkFilename: '[id].css'
+            }),
+            new webpack.DllReferencePlugin({
+                manifest: path.resolve( __dirname, 'dist', 'manifest.json')
             })
-        ]
+        ],
+        watch: true,
+        watchOptions: {
+            poll: 1000, // 每秒1000次
+            aggregateTimeout: 500,
+            ignored: /node_modules/
+        },
     }
 }

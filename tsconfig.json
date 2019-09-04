@@ -1,5 +1,9 @@
 {
     "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "_components": ["components"],
+        },
         "outDir": "./dist",
         "sourceMap": true,
         "noImplicitAny": false,
@@ -8,6 +12,7 @@
         "target": "es5",
         "jsx": "react",
         "allowJs": true,
-        "allowSyntheticDefaultImports": true
+        "alwaysStrict": true,
+        "allowSyntheticDefaultImports": true,
     }
 }

@@ -7,13 +7,13 @@ module.exports = {
     },
     output: {
         filename: '_dll_[name].js', // 产生的文件名
-        path: path.resolve(__dirname,'./dist/vendors'),
+        path: path.resolve(__dirname,'../dist/vendors'),
         library: '_dll_[name]'
     },
     plugins: [
         new webpack.DllPlugin({ // name === library
             name: '_dll_[name]',
-            path: path.resolve(__dirname,'./dist/vendors','manifest.json')
+            path: path.resolve(__dirname,'../dist/vendors','manifest.json')
         })
     ]
 }

@@ -13,6 +13,7 @@
     "@types/redux-immutable": "^4.0.1",
     "@types/redux-thunk": "^2.1.0",
     "classnames": "^2.2.6",
+    "core-js": "^3.2.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-loadable": "^5.5.0",
@@ -51,9 +52,9 @@
     "webpack-cli": "^3.3.7"
   },
   "scripts": {
-    "dev": "webpack --config webpack.config.js --mode development --progress --env.production=false",
-    "build": "webpack --config webpack.config.js --mode production --progress --env.production",
-    "dll": "webpack --config webpack.config.react.js"
+    "dev": "webpack --config ./webpack/webpack.config.js --mode development --progress --env.production=false",
+    "build": "webpack --config ./webpack/webpack.config.js --mode production --progress --env.production",
+    "dll": "webpack --config ./webpack/webpack.config.react.js"
   },
   "repository": {
     "type": "git",

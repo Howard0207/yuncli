@@ -1,8 +1,16 @@
 {
+    "include": ["src/**/*"],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
+    ],
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "_components": ["components"],
+            "@less": ["less"],
+            "@store": ["store"],
+            "@page": ["src"],
+            "components": ["components"]
         },
         "outDir": "./dist",
         "sourceMap": true,
@@ -13,6 +21,6 @@
         "jsx": "react",
         "allowJs": true,
         "alwaysStrict": true,
-        "allowSyntheticDefaultImports": true,
+        "allowSyntheticDefaultImports": true
     }
 }

@@ -4,22 +4,29 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
 const webpack = require('webpack')
+const HappyPack = require('happypack')
+const os = require('os')
+const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length })
 module.exports = env => {
-    const devMode = env.production === true
-    return {
-        entry: path.resolve(__dirname, 'index.tsx'),
+    const devMode = env.production === "false"
+    let config = {
+        entry: path.resolve(__dirname, '../routes/main/index'),
         output: {
-            path: path.resolve(__dirname, 'dist'),
+            path: path.resolve(__dirname, '../dist'),
             filename: "js/index.js"
         },
         resolve: {
             // Add `.ts` and `.tsx` as a resolvable extension.
             extensions: [".tsx", ".ts", ".js", ".jsx"],
             alias: {
-                _components: path.resolve(__dirname, 'components'),
+                "@less": path.resolve(__dirname, '../less'),
+                "@store": path.resolve(__dirname, '../store'),
+                "@page": path.resolve(__dirname, '../src'),
+                "components": path.resolve(__dirname, '../components')               
             }
         },
         optimization: {
+            minimize: true,
             minimizer: [
                 new TerserJSPlugin({
                     cache: true,
@@ -53,25 +60,28 @@ module.exports = env => {
         module: {
             rules: [
                 {
-                    test: /\.js$/,
-                    use: 'HappyPack/loader?id=js',
-                    include: path.resolve(__dirname, "../src"),
-                    // exclude: /node_modules/
-                },
-                {
                     test: /\.tsx?$/,
-                    use: ['babel-loader', 'ts-loader'],
+                    use: [
+                        { loader: 'happypack/loader?id=babelTS' },
+                        'ts-loader'
+                    ],
+                    // include: path.resolve(__dirname, "../src"),
                     exclude: /node_modules/
                 },
-                {
-                    test: /\.js?$/,
-                    use: 'babel-loader',
-                    exclude: /node_modules/
-                },
+                // {
+                //     test: /\.tsx?$/,
+                //     use: ['babel-loader', 'ts-loader'],
+                //     exclude: /node_modules/
+                // },
+                // {
+                //     test: /\.js?$/,
+                //     use: 'babel-loader',
+                //     exclude: /node_modules/
+                // },
                 {
                     test: /\.(le|c)ss?$/,
                     use: [
-                        devMode ? MiniCssExtractPlugin.loader : 'style-loader',
+                        devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
                         'css-loader',
                         'postcss-loader',
                         {
@@ -107,22 +117,13 @@ module.exports = env => {
 
         plugins: [
             new HappyPack({
-                id: 'js',
-                use: [{
-                    loader: "babel-loader",
-                    options: {
-                        presets: [["@babel/preset-env", { "targets": {"ie": "9","esmodules": true }, "useBuiltIns": "usage","corejs": 3 }], "@babel/preset-react"],
-                        plugins: [
-                            ["@babel/plugin-proposal-decorators", { "legacy": true }],
-                            "@babel/plugin-transform-runtime",
-                            "@babel/plugin-syntax-dynamic-import"
-                        ]
-                    }
-                }]
+                id: 'babelTS',
+                threadPool: happyThreadPool,
+                loaders: ['babel-loader']
             }),
             new HtmlWebpackPlugin({
-                template: path.resolve(__dirname, 'src/index.html'),
-                favicon: path.resolve(__dirname, 'favicon.ico'),
+                template: path.resolve(__dirname, '../routes/main/main.html'),
+                favicon: path.resolve(__dirname, '../favicon.ico'),
                 filename: 'index.html',
                 inject: 'body',
                 minify: true,
@@ -132,14 +133,19 @@ module.exports = env => {
                 chunkFilename: '[id].css'
             }),
             new webpack.DllReferencePlugin({
-                manifest: path.resolve( __dirname, 'dist', 'manifest.json')
+                manifest: path.resolve(__dirname, '../dist/vendors', 'manifest.json')
             })
-        ],
-        watch: true,
-        watchOptions: {
-            poll: 1000, // 每秒1000次
-            aggregateTimeout: 500,
-            ignored: /node_modules/
-        },
+        ]
     }
+    if (devMode) {
+        config = Object.assign(config, {
+            watch: true,
+            watchOptions: {
+                poll: 1000, // 每秒1000次
+                aggregateTimeout: 500,
+                ignored: /node_modules/
+            }
+        })
+    }
+    return config
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { actionCreators } from './store'
-import Button from '_components/button'
+import Button from 'components/button'
 class Main extends Component<any>{
     render() {
         const { handleClick, content} = this.props
@@ -20,7 +20,7 @@ const mapState = (state) => ({
 })
 
 const mapDispatch = (dispatch) => ({
-    handleClick():void {
+    handleClick() {
         dispatch(actionCreators.changeDetail())
     }
 })

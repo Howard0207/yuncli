@@ -9,7 +9,7 @@
         "paths": {
             "@less": ["less"],
             "@store": ["store"],
-            "@page": ["src"],
+            "page": ["src"],
             "components": ["components"]
         },
         "outDir": "./dist",

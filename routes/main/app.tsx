@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from '../../store'
-import Main from '@page/main'
+import Main from 'page/main'
+
+
 class App extends Component {
     render() {
         return (
             <Provider store={store}>
                 <BrowserRouter>
-                    <div>hello</div>
                     <Switch>
                         <Route path='/' exact component={Main}></Route>
                     </Switch>

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { actionCreators } from './store'
 import Button from 'components/button'
+
 class Main extends Component<any>{
     render() {
         const { handleClick, content} = this.props

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from '../../store'
-import Main from 'page/main'
+import Main from '_page/main'
 
 
 class App extends Component {

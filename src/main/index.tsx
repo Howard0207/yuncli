@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { actionCreators } from './store'
-import Button from 'components/button'
+import Button from '_components/button'
 
 class Main extends Component<any>{
     render() {

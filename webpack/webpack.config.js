@@ -20,9 +20,9 @@ module.exports = env => {
             extensions: [".tsx", ".ts", ".js", ".jsx"],
             alias: {
                 "@less": path.resolve(__dirname, '../less'),
-                "@store": path.resolve(__dirname, '../store'),
-                "page": path.resolve(__dirname, '../src'),
-                "components": path.resolve(__dirname, '../components')               
+                "_store": path.resolve(__dirname, '../store'),
+                "_page": path.resolve(__dirname, '../src'),
+                "_components": path.resolve(__dirname, '../components')               
             }
         },
         optimization: {

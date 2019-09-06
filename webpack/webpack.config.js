@@ -22,7 +22,7 @@ module.exports = env => {
                 "_less": path.resolve(__dirname, '../less'),
                 "_store": path.resolve(__dirname, '../store'),
                 "_page": path.resolve(__dirname, '../src'),
-                "_components": path.resolve(__dirname, '../components')               
+                "_components": path.resolve(__dirname, '../components'),
             }
         },
         optimization: {
@@ -65,34 +65,13 @@ module.exports = env => {
                         { loader: 'happypack/loader?id=babelTS' },
                         'ts-loader'
                     ],
-                    // include: path.resolve(__dirname, "../src"),
                     exclude: /node_modules/
                 },
-                // {
-                //     test: /\.tsx?$/,
-                //     use: ['babel-loader', 'ts-loader'],
-                //     exclude: /node_modules/
-                // },
-                // {
-                //     test: /\.js?$/,
-                //     use: 'babel-loader',
-                //     exclude: /node_modules/
-                // },
                 {
                     test: /\.(le|c)ss?$/,
                     use: [
                         devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-                        'css-loader',
-                        'postcss-loader',
-                        {
-                            loader: 'px-to-rem-loader',
-                            options: {
-                                dpr: 2,
-                                rem: 75,
-                                exclude: ['background-size']
-                            }
-                        },
-                        'less-loader',
+                        'happypack/loader?id=cssLoader'
                     ]
                 },
                 {
@@ -120,6 +99,24 @@ module.exports = env => {
                 id: 'babelTS',
                 threadPool: happyThreadPool,
                 loaders: ['babel-loader']
+            }),
+            new HappyPack({
+                id: 'cssLoader',
+                threadPool: happyThreadPool,
+                cache: false,
+                loaders: [
+                    'css-loader',
+                    'postcss-loader',
+                    {
+                        loader: 'px-to-rem-loader',
+                        options: {
+                            dpr: 2,
+                            rem: 75,
+                            exclude: ['background-size']
+                        }
+                    },
+                    'less-loader'
+                ]
             }),
             new HtmlWebpackPlugin({
                 template: path.resolve(__dirname, '../routes/main/main.html'),

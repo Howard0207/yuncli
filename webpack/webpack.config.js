@@ -19,7 +19,7 @@ module.exports = env => {
             // Add `.ts` and `.tsx` as a resolvable extension.
             extensions: [".tsx", ".ts", ".js", ".jsx"],
             alias: {
-                "@less": path.resolve(__dirname, '../less'),
+                "_less": path.resolve(__dirname, '../less'),
                 "_store": path.resolve(__dirname, '../store'),
                 "_page": path.resolve(__dirname, '../src'),
                 "_components": path.resolve(__dirname, '../components')               

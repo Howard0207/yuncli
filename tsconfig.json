@@ -6,7 +6,7 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "@less/*": ["less/*"],
+            "_less/*": ["less/*"],
             "_store/*": ["store/*"],
             "_page/*": ["src/*"],
             "_components/*": ["components/*"]
